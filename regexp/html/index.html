@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则速查</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+</head>
+<body>
+    <ul class="add">
+        <li>
+            <label for="label">标示</label>
+            <input type="text" id="label" name="label">
+        </li>
+        <li>
+            <label for="reg">规则</label>
+            <input type="text" id="reg" name="reg">
+        </li>
+        <li>
+            <label for="warn">警示</label>
+            <input type="text" id="warn" name="warn">
+        </li>
+        <li>
+            <button id="add">添加</button>
+        </li>
+        <li>*</li>
+    </ul>
+    <div class="search">
+        <label for="search">查询</label>
+        <input type="text">
+    </div>
+    <div class="show">
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>标示</th>
+                    <th>规则</th>
+                    <th>警示</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="listData">
+                <tr class="noChange">
+                    <td class="no-data" colspan="5">没有要查询的数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="update">
+        <div>
+            <h3>更改数据</h3>
+            <div>
+                <label for="upLabel">标示</label>
+                <input type="text" name="label" id="upLabel">
+            </div>
+            <div>
+                <label for="upReg">规则</label>
+                <input type="text" name="reg" id="upReg">
+            </div>
+            <div>
+                <label for="upWarn">警示</label>
+                <input type="text" name="warn" id="upWarn">
+            </div>
+            <div>
+                <input type="text" name="id" hidden id="upId">
+            </div>
+            <div class="warn">*</div>
+            <button onclick="cancel()">取消</button>
+            <button onclick="ascertain()">确定</button>
+        </div>
+    </div>
+    <script src="../js/jquery-1.9.1.js"></script>
+    <script src="../js/index.js"></script>
+</body>
+</html>

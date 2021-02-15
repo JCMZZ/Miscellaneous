@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       classpath:/org/springframework/beans/factory/xml/spring-beans-4.0.xsd  
+       http://www.springframework.org/schema/aop 
+       classpath:/org/springframework/aop/config/spring-aop-4.0.xsd 
+       http://www.springframework.org/schema/tx 
+       classpath:/org/springframework/transaction/config/spring-tx-4.0.xsd 
+       http://www.springframework.org/schema/context 
+       classpath:/org/springframework/context/config/spring-context-4.0.xsd 
+       http://www.springframework.org/schema/task  
+       http://www.springframework.org/schema/task/spring-task-3.1.xsd 
+       ">
+
+	<context:component-scan base-package="cn.emay.project">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<bean class="cn.emay.common.spring.BeanFactoryUtils" id="BeanFactoryUtils" />
+
+	<bean class="cn.emay.common.cache.redis.RedisSingleClient" id="cache" init-method="init">
+		<property name="properties" >
+			<props>
+				<prop key="host">127.0.0.1</prop>
+				<prop key="port">6379</prop>
+				<prop key="timeout">5000</prop>
+				<prop key="maxIdle">8</prop>
+				<prop key="maxTotal">16</prop>
+				<prop key="minIdle">1</prop>
+				<prop key="maxWaitMillis">2000</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean class="cn.emay.common.captcha.CaptchaProducer" id="cptchaProducer">
+		<property name="cache" ref="cache" />
+	</bean>
+	
+	<bean class="cn.emay.project.constant.InitializationProcess" id="initprocess" init-method="init"/>
+	
+	<import resource="classpath:spring-datasource.xml" />
+	
+</beans>

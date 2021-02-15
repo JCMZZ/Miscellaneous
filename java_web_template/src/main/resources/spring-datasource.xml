@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       classpath:/org/springframework/beans/factory/xml/spring-beans-4.0.xsd  
+       http://www.springframework.org/schema/aop 
+       classpath:/org/springframework/aop/config/spring-aop-4.0.xsd 
+       http://www.springframework.org/schema/tx 
+       classpath:/org/springframework/transaction/config/spring-tx-4.0.xsd 
+       http://www.springframework.org/schema/context 
+       classpath:/org/springframework/context/config/spring-context-4.0.xsd 
+       ">
+
+	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="poolProperties">
+			<bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
+				<property name="url"
+					value="jdbc:mysql://127.0.0.1:3306/project?characterEncoding=UTF-8" />
+				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="username" value="root" />
+				<property name="password" value="passowrd" />
+				<property name="maxActive" value="30" />
+				<property name="maxIdle" value="10" />
+				<property name="minIdle" value="2" />
+				<property name="initialSize" value="2" />
+				<property name="testWhileIdle" value="true" />
+				<property name="validationQuery" value="select 1" />
+				<property name="validationQueryTimeout" value="1" />
+				<property name="timeBetweenEvictionRunsMillis" value="60000" />
+				<property name="numTestsPerEvictionRun" value="100" />
+				<property name="logAbandoned" value="true" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+			<list>
+				<value>cn.emay.project.pojo</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.jdbc.batch_size">50</prop>
+				<prop key="hibernate.enable_lazy_load_no_trans">false</prop>
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:advice id="transactionManagertxAdvice"
+		transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="save*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="remove*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="update*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="modify*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="change*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="on*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="off*" propagation="REQUIRED" read-only="false"/>
+			<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+			<tx:method name="*"  propagation="SUPPORTS" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config proxy-target-class="true">
+		<aop:advisor advice-ref="transactionManagertxAdvice"
+			pointcut="execution(* cn.emay.project.service..*.*(..))  " />
+	</aop:config>
+
+</beans>

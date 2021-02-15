@@ -1,0 +1,74 @@
+.add li{
+    display: inline-block;
+}
+.add,.search{
+    margin:20px;
+}
+.show{
+    overflow-x: hidden;
+}
+.show,.show>table{
+    text-align: center;
+    width:100%;
+    border-collapse:collapse;
+}
+.show>table tr:not(.noChange)>td{
+    box-sizing: border-box;
+    border:1px solid #999;
+}
+.show>table>tbody>tr:not(.noChange):hover{
+    background: #aaa;
+    cursor: pointer;
+}
+.no-data{
+    padding:50px;
+}
+@media screen and (min-width: 0px) {
+    .update {
+        display: none;
+        background:rgba(153, 153, 153, 0.596);
+        width:100%;
+        height:100%;
+        position: fixed;
+        top:0;
+        left: 0;
+        z-index:99999;
+    }
+    .update>div{
+        text-align: center;
+        width:100%;
+        box-sizing: border-box;
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;;
+        bottom:0;
+        margin: auto;
+        width:400px;
+        height:250px;
+        border:4px solid #aaa;
+        border-radius:4px;
+        background: #fff;
+    }
+    .update>div>div{
+        margin:10px;
+    }    
+    .update>div>h3{
+        box-sizing: border-box;
+        width:100%;
+        height:40px;
+        line-height: 40px;
+        padding-left:20px;
+        background:#aaa;
+        color:black;
+        font-weight:200;
+    }
+    .update>div>button{
+        position: absolute;
+        bottom:10px;
+        right:100px;
+    }    
+    .update>div>button:last-child{
+        left:100px;
+    }    
+}
