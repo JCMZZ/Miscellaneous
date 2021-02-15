@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取指定ID对象的路径</title>
+</head>
+
+<body>
+    <script>
+        //只找到他自己的根就好了。
+        /* "id": 181 */
+        var data = [{
+                "id": 5,
+                "parentId": 0,
+                "nameLangId": 6371,
+                "name": {
+                    "en": "A-Good-Company",
+                    "zh_cn": "A-Good-Company",
+                    "zh_tw": "A-Good-Company",
+                    "ja": "A-Good-Company"
+                },
+                "lev": 1,
+                "logo": "建筑.svg",
+                "dashboardOrgId": 5,
+                "children": [{
+                        "id": 6,
+                        "parentId": 5,
+                        "nameLangId": 6375,
+                        "name": {
+                            "en": "Neihu",
+                            "zh_cn": "Neihu",
+                            "zh_tw": "Neihu",
+                            "ja": "Neihu"
+                        },
+                        "lev": 2,
+                        "logo": "建筑.svg",
+                        "dashboardOrgId": 5,
+                        "children": []
+                    },
+                    {
+                        "id": 7,
+                        "parentId": 5,
+                        "nameLangId": 6379,
+                        "name": {
+                            "en": "Beijing",
+                            "zh_cn": "Beijing",
+                            "zh_tw": "Beijing",
+                            "ja": "Beijing"
+                        },
+                        "lev": 2,
+                        "logo": "建筑.svg",
+                        "dashboardOrgId": 5,
+                        "children": []
+                    },
+                    {
+                        "id": 176,
+                        "parentId": 5,
+                        "nameLangId": 22939,
+                        "name": {
+                            "en": "Shenyang",
+                            "zh_cn": "Shenyang",
+                            "zh_tw": "Shenyang",
+                            "ja": "Shenyang"
+                        },
+                        "lev": 2,
+                        "logo": "建筑.svg",
+                        "dashboardOrgId": 5,
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 19,
+                "parentId": 0,
+                "nameLangId": 8313,
+                "name": {
+                    "en": "TestCFF",
+                    "zh_cn": "TestCFF",
+                    "zh_tw": "TestCFF",
+                    "ja": "TestCFF"
+                },
+                "lev": 1,
+                "logo": "建筑.svg",
+                "dashboardOrgId": 31,
+                "children": []
+            },
+            {
+                "id": 21,
+                "parentId": 0,
+                "nameLangId": 8419,
+                "name": {
+                    "en": "Secret-Agency",
+                    "zh_cn": "Secret-Agency",
+                    "zh_tw": "Secret-Agency",
+                    "ja": "Secret-Agency"
+                },
+                "lev": 1,
+                "logo": "建筑.svg",
+                "dashboardOrgId": 33,
+                "children": [{
+                    "id": 22,
+                    "parentId": 21,
+                    "nameLangId": 8423,
+                    "name": {
+                        "en": "SA1",
+                        "zh_cn": "SA1",
+                        "zh_tw": "SA1",
+                        "ja": "SA1"
+                    },
+                    "lev": 2,
+                    "logo": "建筑.svg",
+                    "dashboardOrgId": 33,
+                    "children": [{
+                        "id": 181,
+                        "parentId": 180,
+                        "nameLangId": 23016,
+                        "name": {
+                            "en": "group02",
+                            "zh_cn": "group02",
+                            "zh_tw": "group02",
+                            "ja": "group02"
+                        },
+                        "lev": 4,
+                        "logo": "建筑.svg",
+                        "dashboardOrgId": 80,
+                        "children": []
+                    }]
+                }]
+            },
+            {
+                "id": 109,
+                "parentId": 0,
+                "nameLangId": 17361,
+                "name": {
+                    "en": "TestOrg",
+                    "zh_cn": "TestOrg",
+                    "zh_tw": "TestOrg",
+                    "ja": "TestOrg"
+                },
+                "lev": 1,
+                "logo": "建筑.svg",
+                "dashboardOrgId": 80,
+                "children": [{
+                    "id": 127,
+                    "parentId": 109,
+                    "nameLangId": 19641,
+                    "name": {
+                        "en": "1d",
+                        "zh_cn": "1d",
+                        "zh_tw": "1d",
+                        "ja": "1d"
+                    },
+                    "lev": 2,
+                    "logo": "建筑.svg",
+                    "dashboardOrgId": 80,
+                    "children": [{
+                        "id": 180,
+                        "parentId": 127,
+                        "nameLangId": 23014,
+                        "name": {
+                            "en": "group01",
+                            "zh_cn": "group01",
+                            "zh_tw": "group01",
+                            "ja": "group01"
+                        },
+                        "lev": 3,
+                        "logo": "建筑.svg",
+                        "dashboardOrgId": 80,
+                        "children": []
+                    }]
+                }]
+            }
+        ];
+    </script>
+    <script>
+        function getLinkData(data, activeId, language) {
+            var dataCopy = JSON.parse(JSON.stringify(data));
+            var virtualMap = {
+                id: -1,
+                children: dataCopy
+            }
+
+            function recursion(data) {
+                var cache = [];
+                if (data.id === activeId) {
+                    return cache.concat(data);
+                }
+                for (var item of data.children) {
+                    if (item.id === activeId) {
+                        cache = cache.concat(item);
+                        break;
+                    }
+                    cache = cache.concat(recursion(item));
+                }
+                return cache.length > 0 ? [data].concat(cache) : [];
+            }
+            return recursion(virtualMap).slice(1).map(val => val.name[language]).join('>');
+        }
+        console.log(getLinkData(data, 181, 'en'));
+    </script>
+</body>
+
+</html>

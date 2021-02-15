@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>汉诺塔</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .main {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 100px;
+            width: 100%;
+            min-width: 1100px;
+            height: 100%;
+            min-height: 550px;
+            background: radial-gradient(rgba(247, 247, 244, 0.753), rgba(27, 27, 27, 0.384));
+        }
+
+        .pillars {
+            position: relative;
+            width: 30px;
+            height: 70%;
+            background: red;
+        }
+
+        .base_model {
+            position: absolute;
+            height: 30px;
+            width: 1000%;
+            background: rgba(104, 104, 100, 0.9);
+            left: -450%;
+            bottom: -30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div id="A" class="pillars">
+            <div class="base_model"></div>
+        </div>
+        <div id="B" class="pillars">
+            <div class="base_model"></div>
+        </div>
+        <div id="C" class="pillars">
+            <div class="base_model"></div>
+        </div>
+    </div>
+    <script>
+        var discs = [{
+            width: '800%',
+            background: 'green'
+        }, {
+            width: '600%',
+            background: 'yellow'
+        }, {
+            width: '400%',
+            background: 'blue'
+        }];
+        class Jq {
+            constructor() {}
+
+        }
+        console.log(flattening(multidimensionalArray));
+    </script>
+</body>
+
+</html>

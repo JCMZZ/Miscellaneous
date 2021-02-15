@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扁平化数组</title>
+</head>
+
+<body>
+    <script>
+        var multidimensionalArray = [0, 1, [2, 3, [4, 5], 6, 7], 8, 9, [10, [11, [12]], [13]], 14, 15];
+        /*
+         * 线性递归
+         */
+        function flattening(array) {
+            var cacheArr = [];
+            if (Object.prototype.toString.call(array).indexOf('Array') === -1) {
+                return cacheArr.concat(array);
+            } else {
+                for (var item of array) {
+                    cacheArr = cacheArr.concat(flattening(item));
+                }
+                return cacheArr;
+            }
+        }
+        console.log(flattening(multidimensionalArray));
+    </script>
+    <script>
+        /*
+         * 尾递归
+         */
+        function tailRecursion(arr) {
+            if (arr.some(val => Object.prototype.toString.call(val).indexOf('Array') !== -1)) {
+                var cache = [];
+                for (var item of arr) {
+                    cache = cache.concat(item);
+                }
+                return tailRecursion(cache);
+            } else {
+                return arr;
+            }
+        }
+        console.log(tailRecursion(multidimensionalArray));
+    </script>
+    <script>
+        /*
+         * 循环
+         */
+        function flatteningCirculation(arr) {
+            while (arr.some(val => Object.prototype.toString.call(val).indexOf('Array') !== -1)) {
+                var cache = []
+                for (var item of arr) {
+                    cache = cache.concat(item);
+                }
+                arr = cache;
+            }
+            return arr;
+        }
+        console.log(flatteningCirculation(multidimensionalArray));
+    </script>
+</body>
+
+</html>

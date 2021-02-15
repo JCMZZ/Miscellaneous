@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         *        1
+         *      /   \
+         *     1     1
+         *    / \   / \
+         *   1    2    1
+         */
+        function Triangle(n, m) {
+            /* 初始化矩形容器 */
+            var arr = [];
+            for (var i = 0; i < n; i++) {
+                arr[i] = [];
+                for (var item = 0; item < 2 * n - 1; item++) {
+                    arr[i][item] = 0;
+                }
+            }
+            /* 初始化端值 */
+            for (var j = 0; j < n; j++) {
+                arr[j][n - j - 1] = 1;
+                arr[j][n + j - 1] = 1;
+            }
+            /* 值填充 */
+            for (var c = 2; c < n; c++) {
+                for (var t = n - c + 1; t < n - 2 + c; t += 2) {
+                    arr[c][t] = arr[c - 1][t + 1] + arr[c - 1][t - 1];
+                }
+            }
+            /* 打印三角形 */
+            arr.forEach((val, index) => {
+                console.log(index + ' ', val.map(value => value === 0 ? ' ' : value).join(' '))
+            });
+            console.log(arr);
+            return arr[n - 1][m - 1];
+        }
+        console.log(Triangle(5, 7));
+    </script>
+    <script>
+        /**
+         * YangHuiRecursion
+         * row {Number} 行
+         * clo {Number} 列
+         */
+        function YangHuiRecursion(row, clo) {
+            if (clo > row) {
+                return 0;
+            } else if (clo == 1) {
+                return 1;
+            } else {
+                return YangHuiRecursion(row - 1, clo - 1) + YangHuiRecursion(row - 1, clo);
+            }
+        }
+
+        function Yanghui(n) {
+            var arr = []
+            for (var i = 0; i < n; i++) {
+                arr[i] = [];
+                for (var j = 0; j <= i; j++) {
+                    arr[i][j] = YangHuiRecursion(i + 1, j + 1);
+                }
+            }
+            console.log('arr', arr)
+        }
+        Yanghui(5)
+    </script>
+</body>
+
+</html>

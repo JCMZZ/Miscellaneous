@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>将关联对象数组格式化为树结构</title>
+</head>
+
+<body>
+    <script>
+        var dataObj = [{
+            id: 8,
+            pid: 0,
+            name: 'C#'
+        }, {
+            id: 7,
+            pid: 3,
+            name: 'C++'
+        }, {
+            id: 6,
+            pid: 1,
+            name: 'SQL'
+        }, {
+            id: 1,
+            pid: 0,
+            name: 'Python'
+        }, {
+            id: 2,
+            pid: 1,
+            name: 'Java'
+        }, {
+            id: 3,
+            pid: 2,
+            name: 'JavaScript'
+        }, {
+            id: 4,
+            pid: 3,
+            name: 'Perl'
+        }, {
+            id: 5,
+            pid: 3,
+            name: 'Go'
+        }];
+        /*
+         * 递归实现
+         */
+        function getObjectTree(objData) {
+            console.time('getObjectTree');
+            objData = JSON.parse(JSON.stringify(objData));
+            var objectDataTree = [];
+            objData.sort((a, b) => a.id - b.id);
+            /*
+             * 尾递归
+             */
+            function treeMove(objectDataTree, item) {
+                return objectDataTree.find(val => {
+                    if (val.id === item.pid) {
+                        val.children.push(item);
+                        return true;
+                    } else if (val.children.length > 0) {
+                        return treeMove(val.children, item);
+                    }
+                });
+            }
+            for (var i of objData) {
+                i.children || (i.children = []);
+                var isCheck = treeMove(objectDataTree, i);
+                if (!isCheck) {
+                    objectDataTree.push(i);
+                }
+            }
+            console.timeEnd('getObjectTree');
+            return objectDataTree;
+        }
+        console.log(getObjectTree(dataObj));
+    </script>
+    <script>
+        /*
+         * 循环实现   
+         */
+        function getObjectTreeCirculation(objData) {
+            console.time('getObjectTreeCirculation');
+            objData = JSON.parse(JSON.stringify(objData));
+            var objectDataTree = [];
+            objData.sort((a, b) => a.id - b.id);
+            for (var item of objData) {
+                item.children || (item.children = []);
+                var children = objectDataTree;
+                var isFind = false;
+                do {
+                    var activeData = children.find(val => val.id === item.pid);
+                    if (activeData) {
+                        activeData.children.push(item);
+                        isFind = true;
+                        children = [];
+                    } else {
+                        children = children.reduce((initial, val) => initial.concat(val.children), []);
+                    }
+                } while (children.length > 0);
+                !isFind && (objectDataTree.push(item));
+            }
+            console.timeEnd('getObjectTreeCirculation');
+            return objectDataTree;
+        }
+        console.log(getObjectTreeCirculation(dataObj));
+    </script>
+    <script>
+        /*
+         *   嵌套结构递归改循环
+         *   将纵深改为横向
+         */
+    </script>
+</body>
+
+</html>

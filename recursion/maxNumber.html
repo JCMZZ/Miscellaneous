@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>取最大值</title>
+</head>
+
+<body>
+    <script>
+        let numbers = [1, 4, 0, 3, 5, 7, 2];
+
+        function max_recursion(numbers) {
+            if (numbers.length <= 1) {
+                return numbers[0];
+            } else {
+                return Math.max(numbers.shift(), max_recursion(numbers));
+            }
+        }
+        let maxNum = max_recursion(numbers)
+        console.log(maxNum)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element UI Department Tree</title></title>
+</head>
+<body>
+    <script src="./dep.js"></script>
+    <script>
+        /**
+         * [{
+                id: 1, // deptId
+                label: '一级 1', // deptName
+                children: [{
+                id: 4,
+                label: '二级 1-1',
+                children: [{
+                        id: 9, // staffCode
+                        label: '三级 1-1-1' // staffName
+                    }, {
+                        id: 10,
+                        label: '三级 1-1-2'
+                    }]
+                }]
+            }]
+         */
+        /**
+         * 转化为element ui树
+         */
+        let depList = [data];
+        function format(deps){
+            return deps.map(item=>{
+                let children = [];
+                if (item.deptList && item.deptList.length > 0) {
+                    children = children.concat(format(item.deptList));
+                }
+                if (item.staffList && item.staffList.length > 0) {
+                    let staff = item.staffList.map(s=>({id: s.staffCode, label: s.staffName, isStaff: true}))
+                    children = children.concat(staff);
+                }
+                return {id: item.deptId, label: item.deptName, children};
+            });
+        }
+        let tree = format(depList);
+        /**
+         * 获取指定id（部门、职员）的数据
+         */
+        let checkData = ['2277'];
+        function getStaffIdStr(checkData, tree){
+            function getStaffId(tree, p){
+                let ids = [];
+                if(checkData.length <= 0){
+                    return ids;
+                }
+                ids = tree.reduce((s, v)=>{
+                    if((checkData.includes(v.id + '') || (p && p.isAll)) && v.isStaff && !ids.includes(v.id)){
+                        let has = checkData.indexOf(v.id);
+                        checkData.splice(has, has===-1?0:1);
+                        s.push(v);
+                    }
+                    if(!v.isStaff){
+                        v.isAll = checkData.includes(v.id + '') || (p && p.isAll);
+                        return s.concat(getStaffId(v.children, v));
+                    }
+                    return s;
+                },[]);
+                return Array.from(new Set(ids));
+            }   
+            return getStaffId(tree);
+        }
+        console.log('获取id', getStaffIdStr(checkData, tree));
+    </script>
+</body>
+</html>

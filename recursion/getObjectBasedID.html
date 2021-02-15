@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>根据指定Id获取匹配对象</title>
+</head>
+<body>
+    <script>
+        var data = [
+            {
+                "id": 5,
+                "parentId": 0,
+                "nameLangId": 6371,
+                "name": {
+                    "en": "A-Good-Company",
+                    "zh_cn": "A-Good-Company",
+                    "zh_tw": "A-Good-Company",
+                    "ja": "A-Good-Company"
+                },
+                "lev": 1,
+                "logo": "建筑.svg",
+                "dashboardOrgId": 5,
+                "children": [
+                    {
+                        "id": 6,
+                        "parentId": 5,
+                        "nameLangId": 6375,
+                        "name": {
+                            "en": "Neihu",
+                            "zh_cn": "Neihu",
+                            "zh_tw": "Neihu",
+                            "ja": "Neihu"
+                        },
+                        "lev": 2,
+                        "logo": "建筑.svg",
+                        "dashboardOrgId": 5,
+                        "children": []
+                    },
+                    {
+                        "id": 7,
+                        "parentId": 5,
+                        "nameLangId": 6379,
+                        "name": {
+                            "en": "Beijing",
+                            "zh_cn": "Beijing",
+                            "zh_tw": "Beijing",
+                            "ja": "Beijing"
+                        },
+                        "lev": 2,
+                        "logo": "建筑.svg",
+                        "dashboardOrgId": 5,
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 19,
+                "parentId": 0,
+                "nameLangId": 8313,
+                "name": {
+                    "en": "TestCFF",
+                    "zh_cn": "TestCFF",
+                    "zh_tw": "TestCFF",
+                    "ja": "TestCFF"
+                },
+                "lev": 1,
+                "logo": "建筑.svg",
+                "dashboardOrgId": 31,
+                "children": [
+                    {
+                        "id": 30,
+                        "parentId": 19,
+                        "nameLangId": 8561,
+                        "name": {
+                            "en": "T-1",
+                            "zh_cn": "T-1",
+                            "zh_tw": "T-1",
+                            "ja": "T-1"
+                        },
+                        "lev": 2,
+                        "logo": "建筑.svg",
+                        "dashboardOrgId": 31,
+                        "children": [
+                            {
+                                "id": 31,
+                                "parentId": 30,
+                                "nameLangId": 8565,
+                                "name": {
+                                    "en": "T-2",
+                                    "zh_cn": "T-2",
+                                    "zh_tw": "T-2",
+                                    "ja": "T-2"
+                                },
+                                "lev": 3,
+                                "logo": "建筑.svg",
+                                "dashboardOrgId": 31,
+                                "children": [
+                                    {
+                                        "id": 32,
+                                        "parentId": 31,
+                                        "nameLangId": 8569,
+                                        "name": {
+                                            "en": "T-3",
+                                            "zh_cn": "T-3",
+                                            "zh_tw": "T-3",
+                                            "ja": "T-3"
+                                        },
+                                        "lev": 4,
+                                        "logo": "建筑.svg",
+                                        "dashboardOrgId": 31,
+                                        "children": [
+                                            {
+                                                "id": 33,
+                                                "parentId": 32,
+                                                "nameLangId": 8573,
+                                                "name": {
+                                                    "en": "T-4",
+                                                    "zh_cn": "T-4",
+                                                    "zh_tw": "T-4",
+                                                    "ja": "T-4"
+                                                },
+                                                "lev": 5,
+                                                "logo": "建筑.svg",
+                                                "dashboardOrgId": 31,
+                                                "children": [
+                                                    {
+                                                        "id": 34,
+                                                        "parentId": 33,
+                                                        "nameLangId": 8577,
+                                                        "name": {
+                                                            "en": "T-5",
+                                                            "zh_cn": "T-5",
+                                                            "zh_tw": "T-5",
+                                                            "ja": "T-5"
+                                                        },
+                                                        "lev": 6,
+                                                        "logo": "建筑.svg",
+                                                        "dashboardOrgId": 31,
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 21,
+                "parentId": 0,
+                "nameLangId": 8419,
+                "name": {
+                    "en": "Secret-Agency",
+                    "zh_cn": "Secret-Agency",
+                    "zh_tw": "Secret-Agency",
+                    "ja": "Secret-Agency"
+                },
+                "lev": 1,
+                "logo": "建筑.svg",
+                "dashboardOrgId": 33,
+                "children": []
+            }
+        ];
+        function getObj(data, activeId){
+            var dataCopy = JSON.parse(JSON.stringify(data))
+            var currentData;
+            while(dataCopy.length){
+                currentData = dataCopy.find(val=>val.id === activeId);
+                if(currentData)
+                    break
+                dataCopy = dataCopy.reduce((start,current)=>start.concat(current.children),[])
+            }
+            return JSON.parse(JSON.stringify(currentData))
+        }
+        console.log(getObj(data, 31))
+    </script>
+</body>
+</html>

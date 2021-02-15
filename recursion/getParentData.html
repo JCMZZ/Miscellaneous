@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取父级数据</title>
+</head>
+
+<body>
+    <script>
+        var data = [{
+                "Id": 59,
+                "ParentId": 0,
+                "nodetype": "Org",
+                "TmplTypeId": 1,
+                "Name": "DEL",
+                "DisplayName": "DEL",
+                "Lev": 1,
+                "Logo": "1",
+                "Children": []
+            },
+            {
+                "Id": 63,
+                "ParentId": 0,
+                "nodetype": "Org",
+                "TmplTypeId": 1,
+                "Name": "LLLLL",
+                "DisplayName": "LLLLL",
+                "Lev": 1,
+                "Logo": "1",
+                "Children": [{
+                    "Id": 77,
+                    "ParentId": 63,
+                    "nodetype": "Org",
+                    "TmplTypeId": 1,
+                    "Name": "ttt",
+                    "DisplayName": "ttt",
+                    "Lev": 2,
+                    "Logo": "2",
+                    "Children": []
+                }]
+            },
+            {
+                "Id": 65,
+                "ParentId": 0,
+                "nodetype": "Org",
+                "TmplTypeId": 1,
+                "Name": "MMM",
+                "DisplayName": "MMM",
+                "Lev": 1,
+                "Logo": "2",
+                "Children": []
+            },
+            {
+                "Id": 1,
+                "ParentId": 0,
+                "nodetype": "Org",
+                "TmplTypeId": 1,
+                "Name": "GSD Group",
+                "DisplayName": "GSD Group",
+                "Lev": 1,
+                "Logo": "1.png",
+                "Children": [{
+                        "Id": 2,
+                        "ParentId": 1,
+                        "nodetype": "Org",
+                        "TmplTypeId": 3,
+                        "Name": "HuaDong",
+                        "DisplayName": "HuaDong",
+                        "Lev": 3,
+                        "Logo": "1",
+                        "Children": [{
+                                "Id": 7,
+                                "ParentId": 2,
+                                "nodetype": "Org",
+                                "TmplTypeId": 2,
+                                "Name": "BaiShouCun",
+                                "DisplayName": "BaiShouCun",
+                                "Lev": 3,
+                                "Logo": "5.png",
+                                "Children": []
+                            },
+                            {
+                                "Id": 8,
+                                "ParentId": 2,
+                                "nodetype": "Org",
+                                "TmplTypeId": 2,
+                                "Name": "GeiPaiShui",
+                                "DisplayName": "ChuanYuan GeiPaiShui Site",
+                                "Lev": 3,
+                                "Logo": "1.png",
+                                "Children": []
+                            },
+                            {
+                                "Id": 10,
+                                "ParentId": 2,
+                                "nodetype": "Org",
+                                "TmplTypeId": 2,
+                                "Name": "KunShan Sewage Factory",
+                                "DisplayName": "KunShan Sewage Factory",
+                                "Lev": 3,
+                                "Logo": "1.png",
+                                "Children": []
+                            },
+                            {
+                                "Id": 6,
+                                "ParentId": 2,
+                                "nodetype": "Org",
+                                "TmplTypeId": 2,
+                                "Name": "MaoJiaBang",
+                                "DisplayName": "Maojiabang",
+                                "Lev": 3,
+                                "Logo": "1.png",
+                                "Children": []
+                            },
+                            {
+                                "Id": 9,
+                                "ParentId": 2,
+                                "nodetype": "Org",
+                                "TmplTypeId": 2,
+                                "Name": "HaiMianFactory",
+                                "DisplayName": "HaiMianFactory",
+                                "Lev": 3,
+                                "Logo": "1.png",
+                                "Children": []
+                            }
+                        ]
+                    },
+                    {
+                        "Id": 3,
+                        "ParentId": 1,
+                        "nodetype": "Org",
+                        "TmplTypeId": 3,
+                        "Name": "HuaNan",
+                        "DisplayName": "HuaNan",
+                        "Lev": 2,
+                        "Logo": "3.png",
+                        "Children": [{
+                            "Id": 5,
+                            "ParentId": 3,
+                            "nodetype": "Org",
+                            "TmplTypeId": 2,
+                            "Name": "FuZhou Sewage Factory",
+                            "DisplayName": "FuZhou Sewage Factory",
+                            "Lev": 3,
+                            "Logo": "1.png",
+                            "Children": []
+                        }]
+                    },
+                    {
+                        "Id": 4,
+                        "ParentId": 1,
+                        "nodetype": "Org",
+                        "TmplTypeId": 3,
+                        "Name": "TaiWan",
+                        "DisplayName": "TaiWan",
+                        "Lev": 3,
+                        "Logo": "1",
+                        "Children": [{
+                                "Id": 12,
+                                "ParentId": 4,
+                                "nodetype": "Org",
+                                "TmplTypeId": 2,
+                                "Name": "PingZhen Sewage Factory",
+                                "DisplayName": "PingZhen Sewage Factory",
+                                "Lev": 3,
+                                "Logo": "1.png",
+                                "Children": []
+                            },
+                            {
+                                "Id": 14,
+                                "ParentId": 4,
+                                "nodetype": "Org",
+                                "TmplTypeId": 2,
+                                "Name": "GaoXiong Sewage Factory",
+                                "DisplayName": "GaoXiong Sewage Factory",
+                                "Lev": 3,
+                                "Logo": "1.png",
+                                "Children": []
+                            },
+                            {
+                                "Id": 13,
+                                "ParentId": 4,
+                                "nodetype": "Org",
+                                "TmplTypeId": 2,
+                                "Name": "GongYanYuan ZhongXing Park",
+                                "DisplayName": "GongYanYuan ZhongXing Park",
+                                "Lev": 3,
+                                "Logo": "1.png",
+                                "Children": []
+                            },
+                            {
+                                "Id": 11,
+                                "ParentId": 4,
+                                "nodetype": "Org",
+                                "TmplTypeId": 2,
+                                "Name": "Beiqu Water Resource Recovery Center",
+                                "DisplayName": "Beiqu Water resource recovery center",
+                                "Lev": 3,
+                                "Logo": "1.png",
+                                "Children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+
+        function getParentObj(data, activeId) {
+            let rootObj = {}
+            let cacheArray = []
+            rootObj['Id'] = 'root'
+            rootObj['Name'] = 'Root'
+            rootObj['Children'] = data
+
+            function recursion(data) {
+                if (data.Children.some(value => value.Id === activeId)) {
+                    cacheArray.push(data)
+                    return
+                }
+                var isM = data.Children.filter(value => value.Children.length > 0)
+                for (var item of isM) {
+                    recursion(item)
+                }
+            }
+            recursion(rootObj)
+            if (cacheArray.length <= 0) {
+                return rootObj
+            } else {
+                return cacheArray[0]
+            }
+        }
+        console.log(getParentObj(data, 9))
+    </script>
+</body>
+
+</html>
