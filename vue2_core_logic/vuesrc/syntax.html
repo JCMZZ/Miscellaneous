@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"> </div>
+    <script>
+        let reg = /-(\w)/g
+        let testStr = 'i-l-jcm';
+        // console.log(testStr.replace(reg, (_,s)=>{return s?s.toUpperCase():''}));
+        // console.log = (() => {
+        //     var c = console.log;
+        //     return function(){
+        //         var l = arguments.length;
+        //         c.apply(null, [l, ...arguments]);
+        //     }
+        // })()
+    </script>
+    <script src="./vue.js"></script>
+    <script id="tmp" type="text/x-template">
+
+    </script>
+    <script>
+        let app = document.getElementById("app");
+        Vue.component('a￥￥4', {
+            data() {
+                let obj = {
+                    msg: 'JCM1',
+                    list: ['Java', 'Go', {a:1}]
+                }
+                return obj
+            },
+            model: {
+                prop: "ac",
+                event: "b"
+            },
+            props: {
+                cc: {
+                    type: String,
+                }
+            },
+            template: `<div>
+                    <h1>{{msg}}</h1>
+                    <button @click="changeHandler">修改</button>
+                    <input type="text" />
+                    <div>
+                        <ul>
+                            ${''/* `<li v-for="item in list">{{item}}</li></li>` */}
+                        </ul>
+                    </div>
+                </div>`,
+            methods: {
+                changeHandler() {
+                    console.log(this.list)
+                    this.msg = "被修改";
+                    // console.log(this.msg);
+                    // setInterval(()=>{
+                    //     this.msg = Date.now();
+                    // }, 1000)
+                    // console.log(this.$set(this.list, 5, 'Javascript'))
+                    // this.list.push('c')
+                    // this.list.forEach(item=>console.log(item))
+                    // this.testC = 1
+                    window.tmp = this;
+                }
+            }
+        })
+        let vm = new Vue({ 
+            el: "#app",
+            template: `<div><a￥￥4 cc="1" :ab="c" v-model="c" v-bind="$attrs" v-on="$listeners" @test1="handler" @click="handler" /></div>`,
+            data: { c: 1 }, 
+            methods: {
+                handler(){}
+            }
+        });
+        Vue.config.devtools = false;
+        Vue.config.productionTip = false;
+        // Vue.config.performance = true;
+    </script>
+</body>
+
+</html>
