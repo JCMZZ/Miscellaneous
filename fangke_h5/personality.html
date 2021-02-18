@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<title>九型人格测验</title>
+	<link rel="stylesheet" type="text/css" href="css/personality.css" />
+</head>
+<body class="scroll">
+	<header>
+		<img src="images/logo.png" alt="">
+		<strong>九型人格测验</strong>
+	</header>
+	<div class="line"></div>
+	<form class="form">
+		<div id="form_container"></div>
+		<div id="page_number_box">
+			<div id="prev" data-page="-1" class="page-btn">上一页</div>
+			<div class="select">
+				<select name="page_number" data-current="0" id="page_number" onchange="pageNumberHandler(this)">
+					<option value="0">第1页</option>
+					<option value="1">第2页</option>
+					<option value="2">第3页</option>
+					<option value="3">第4页</option>
+					<option value="4">第5页</option>
+					<option value="5">第6页</option>
+					<option value="6">第7页</option>
+					<option value="7">第8页</option>
+					<option value="8">第9页</option>
+				</select>
+				<img class="page_tips" src="images/down.png" alt="">
+			</div>
+			<div id="next" data-page="1" class="page-btn">下一页</div>
+		</div>
+		<button id="submit" class="submit-btn" disabled>提交</button>
+	</form>
+	<!-- 提示框 -->
+	<div id="toast" class="modal-box"></div>
+	<!-- 填写说明 -->
+	<div id="explanation" class="explanation-box">
+		<div class="explanation-content">
+			<div class="content-title">
+				填写说明
+			</div>
+			<div class="content-details">
+				您好，欢迎参加聚通达面试，请根据以下提示进行性格测试，测试结果将作为面试匹配度参考，本测试共90道单选题，大概会持续3~5分钟，请您耐心作答。
+			</div>
+			<button id="startAnswer" class="content-close">开始答题</button>
+		</div>
+	</div>
+	<!-- 结束提示 -->
+	<div id="endTip" class="explanation-box">
+		<div class="explanation-content">
+			<div style="text-align: center;" class="content-details">
+				性格测试已完成，感谢您的参与
+			</div>
+			<button id="endTipSure" class="content-close">确定</button>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/personality_topic.js"></script>
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/personality.js"></script>
+
+</html>

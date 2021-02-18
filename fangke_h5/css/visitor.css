@@ -1,0 +1,254 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td,
+figure {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 100px;
+	width: 100%;
+	height: 100%;
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+	font-family: "Microsoft YaHei", SimHei, helvetica, arial, verdana, tahoma, sans-serif;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	font-size: .26rem;
+	background: #fff;
+	visibility: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+img {
+	border: 0;
+}
+
+em,
+i,
+b,
+strong {
+	font-style: normal;
+	font-weight: normal;
+}
+
+a {
+	text-decoration: none;
+}
+
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+/* 头 */
+header {
+	box-sizing: border-box;
+	width: 6.3rem;
+	height: 1.6rem;
+	margin: 0 auto;
+	position: relative;
+}
+
+header img,
+header strong {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+header img {
+	left: 0;
+	right: auto;
+	width: 1.75rem;
+	height: .8rem;
+}
+
+header strong {
+	left: auto;
+	right: 0;
+	width: 1.48rem;
+	height: .48rem;
+	font-family: PingFangSC-Medium;
+	font-size: .34rem;
+	color: #8D959C;
+}
+
+.line {
+	width: 6.3rem;
+	height: 0.01rem;
+	background: #EFEFEF;
+	margin: 0 auto;
+	margin-bottom: .4rem;
+}
+
+/* 表单 */
+.form {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	-ms-flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.form-item {
+	width: 6.85rem;
+	height: .88rem;
+	position: relative;
+	/* margin-bottom: .25rem; */
+	margin-bottom: .5rem;
+}
+
+.form-item label,
+.form-item input,
+.form-item select {
+	position: absolute;
+	font-size: .28rem;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	height: 100%;
+	border: none;
+	outline: none;
+}
+
+
+.form-item label {
+	box-sizing: border-box;
+	padding-left: .55rem;
+	width: 2.3rem;
+	color: #B6B6C3;
+	line-height: .88rem;
+	text-align: left;
+	z-index: 1000;
+}
+
+.form-item label>strong {
+	color: red;
+	margin-left: .03rem;
+}
+.form-item select,
+.form-item input {
+	box-sizing: border-box;
+	padding: 0 .55rem 0 2rem;
+	width: 100%;
+	background: #F4F4F4;
+	color: #787890;
+	text-align: right;
+}
+
+.form-item select{
+	appearance:none; 
+	-webkit-appearance:none;
+	-moz-appearance:none;
+}
+
+.form-item input::-webkit-input-placeholder {
+	color: #B6B6C3;
+	font-size: .28rem;
+}
+
+.form-item input::-moz-placeholder {
+	color: #B6B6C3;
+	font-size: .28rem;
+}
+
+.form-item input::-ms-input-placeholder {
+	color: #B6B6C3;
+	font-size: .28rem;
+}
+
+/* 错误提示 */
+small{
+	position: absolute;
+	bottom: -.4rem;
+	width: 100%;
+	color: red;
+	text-align: center;
+	display: none;
+}
+/* 提交按钮 */
+.submit-btn{
+	display: block;
+	width: 5.6rem;
+	height: .88rem;
+	line-height: .88rem;
+	background: #0599F0;
+	border-radius: .44rem;
+	font-size: .28rem;
+	color: #fff;
+	margin: .6rem auto;
+	margin-bottom: .3rem; 
+	border: none;
+	outline: none;
+}
+button[disabled]{
+	background: silver;
+}
+/* 提示框 */
+.modal-box{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	width: 3rem;
+	height: 3rem;
+	border-radius: .1rem;
+	background: rgba(50, 50, 51, 0.88);
+	z-index: 10000;
+	color: #fff;
+	line-height: 3rem;
+	text-align: center;
+	font-size: .4rem;
+}

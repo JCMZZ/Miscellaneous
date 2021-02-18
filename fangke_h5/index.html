@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<title>访客登记系统</title>
+	<link rel="stylesheet" type="text/css" href="css/visitor.css" />
+</head>
+
+<body>
+	<header>
+		<img src="./css/images/logo.png" alt="">
+		<strong>访客记录</strong>
+	</header>
+	<div class="line"></div>
+	<form class="form">
+		<div class="form-item">
+			<label for="name">姓名<strong>*</strong></label>
+			<input type="text" id="name" name="name" placeholder="请输入" data-reg=".+" maxlength="20">
+			<small>姓名不能为空</small>
+		</div>
+		<!-- <div class="form-item">
+			<label for="mobile">来访人电话<strong>*</strong></label>
+			^1[3456789]\d{9}$
+			<input type="text" id="mobile" name="mobile" placeholder="请输入" data-reg="^1[3456789]\d{9}$" maxlength="15">
+			<small>手机号输入有误</small>
+		</div> -->
+		<div class="form-item">
+			<label for="unit">公司简称</label>
+			<input type="text" id="unit" name="unit" placeholder="请输入" maxlength="30">
+		</div>
+		<div class="form-item">
+			<label for="visit_reason">事由<strong>*</strong></label>
+			<select dir="rtl" name="visit_reason" id="visit_reason" onchange="visitReasonHandler(this)">
+				<option value="">请选择</option>
+				<option value="01">初试</option>
+				<option value="02">复试</option>
+				<option value="03">拜访</option>
+				<option value="04">业务洽谈</option>
+				<option value="05">其他</option>
+			</select>
+			<small>事由不能为空</small>
+		</div>
+		<div id="formQuarters" class="form-item" style="display: none;">
+			<label for="post">岗位<strong>*</strong></label>
+			<input type="text" id="post" name="post" require="false" placeholder="请输入" data-reg=".+" maxlength="20">
+			<small>岗位不能为空</small>
+		</div>
+		<div class="form-item">
+			<label for="receiver">邀约人<strong>*</strong></label>
+			<input type="text" id="receiver" name="receiver" placeholder="请输入" data-reg=".+" maxlength="20">
+			<small>邀约人不能为空</small>
+		</div>
+		<div class="form-item">
+			<label for="visit_time">到访时间</label>
+			<input type="text" id="visit_time" name="visit_time" disabled>
+		</div>
+		<button id="submit" class="submit-btn">提交</button>
+	</form>
+	<!-- 提示框 -->
+	<div id="toast" class="modal-box"></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/visitor.js"></script>
+
+</html>

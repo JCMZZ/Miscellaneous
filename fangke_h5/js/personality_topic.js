@@ -1,0 +1,400 @@
+/* 题目 */
+var topic = [{
+	content: "喜欢舒适、和谐的生活，喜欢别人接受我。",
+	type: "I",
+	id: 1
+}, {
+	content: "喜欢以自己的价值尺度来评判他人。",
+	type: "A",
+	id: 2
+}, {
+	content: "喜欢通过思考来解决问题。",
+	type: "E",
+	id: 3
+}, {
+	content: "喜欢一切快乐的事。",
+	type: "G",
+	id: 4
+}, {
+	content: "喜欢行使权力。",
+	type: "H",
+	id: 5
+}, {
+	content: "希望周围的人都来找自己出主意或求助。",
+	type: "B",
+	id: 6
+}, {
+	content: "被人误解是一件十分痛苦的事。",
+	type: "D",
+	id: 7
+}, {
+	content: "总想帮助别人。",
+	type: "B",
+	id: 8
+}, {
+	content: "一旦决定为某人或某个理想奋斗后，就会死心塌地地去做。",
+	type: "F",
+	id: 9
+}, {
+	content: "常常试探或考验朋友、伴侣的忠诚。",
+	type: "F",
+	id: 10
+}, {
+	content: "看不起那些不像我一样的坚强的人，有时会用种种方式羞辱他们。",
+	type: "H",
+	id: 11
+}, {
+	content: "一般不会当面对别人发怒。",
+	type: "I",
+	id: 12
+}, {
+	content: "艺术和美的表现手法是我表达情感的重要手段。",
+	type: "D",
+	id: 13
+}, {
+	content: "当别人办事不妥或者行事不公、不负责任时，我会有不满的情绪。",
+	type: "A",
+	id: 14
+}, {
+	content: "时常拖延问题，不去解决。",
+	type: "I",
+	id: 15
+}, {
+	content: "喜欢戏剧性、多姿多彩的生活。",
+	type: "G",
+	id: 16
+}, {
+	content: "通常是感情用事的人。",
+	type: "D",
+	id: 17
+}, {
+	content: "认为事情总是会朝好的方向发展。",
+	type: "G",
+	id: 18
+}, {
+	content: "当别人请教问题时，会巨细无遗地分析得很清楚。",
+	type: "E",
+	id: 19
+}, {
+	content: "总是在忙着什么，不喜欢无所事事。",
+	type: "C",
+	id: 20
+}, {
+	content: "喜欢听笑话或轻松的话题。",
+	type: "G",
+	id: 21
+}, {
+	content: "如果得不到别人的重视和赏识，会变得十分情绪化甚至有些苛刻。",
+	type: "B",
+	id: 22
+}, {
+	content: "自己是一个性情安静、善于分析的人。",
+	type: "E",
+	id: 23
+}, {
+	content: "不喜欢在被别人指责后改正错误。",
+	type: "H",
+	id: 24
+}, {
+	content: "在别人眼里，是一个能让别人快乐的人。",
+	type: "I",
+	id: 25
+}, {
+	content: "最不喜欢的一件事是虚伪。",
+	type: "F",
+	id: 26
+}, {
+	content: "知错能改，但由于执拗好强，周围的人还是感觉到压力。",
+	type: "H",
+	id: 27
+}, {
+	content: "常觉得很多事情都很好玩、很有趣，人生真是快乐。",
+	type: "G",
+	id: 28
+}, {
+	content: "有时很欣赏自己充满权威，有时却又优柔寡断，依赖别人。",
+	type: "F",
+	id: 29
+}, {
+	content: "往往会因为投入过多的精力去照顾别人，而忽略了对自己的呵护。",
+	type: "B",
+	id: 30
+}, {
+	content: "面对威胁时，会变得焦虑，有会对抗迎面而来的危险。",
+	type: "F",
+	id: 31
+}, {
+	content: "通常是等别人来接近我。",
+	type: "E",
+	id: 32
+}, {
+	content: "喜欢当主角，希望得到大家的注意。",
+	type: "C",
+	id: 33
+}, {
+	content: "别人批评我，我不会辩解。",
+	type: "I",
+	id: 34
+}, {
+	content: "希望生活变得更确定。",
+	type: "F",
+	id: 35
+}, {
+	content: "为了使别人满意，会迁就对方。",
+	type: "I",
+	id: 36
+}, {
+	content: "在重大危机中，通常能克服对自己的质疑和内心的焦虑。",
+	type: "F",
+	id: 37
+}, {
+	content: "喜欢竞争。",
+	type: "C",
+	id: 38
+}, {
+	content: "通常会避开危险或者正面挑战。",
+	type: "F",
+	id: 39
+}, {
+	content: "能够全面地看待事物。",
+	type: "I",
+	id: 40
+}, {
+	content: "喜欢为自己需要的东西会坚守到最后。",
+	type: "H",
+	id: 41
+}, {
+	content: "通常是优柔寡断的。",
+	type: "I",
+	id: 42
+}, {
+	content: "很有包容力，彬彬有礼。",
+	type: "E",
+	id: 43
+}, {
+	content: "好像不会关心别人似的。",
+	type: "E",
+	id: 44
+}, {
+	content: "有时，别人会觉得自己冷酷无情。",
+	type: "H",
+	id: 45
+}, {
+	content: "常常保持警觉。",
+	type: "F",
+	id: 46
+}, {
+	content: "不喜欢要对别人负责的感觉。",
+	type: "G",
+	id: 47
+}, {
+	content: "喜欢完美地表达。",
+	type: "E",
+	id: 48
+}, {
+	content: "经常拖延工作。",
+	type: "G",
+	id: 49
+}, {
+	content: "喜欢挑战和登上高峰的经验。",
+	type: "H",
+	id: 50
+}, {
+	content: "倾向于独断独行并自己解决问题。",
+	type: "E",
+	id: 51
+}, {
+	content: "在别人眼里， 所作所为就像是在演戏。",
+	type: "D",
+	id: 52
+}, {
+	content: "常常表现得十分忧郁的样子。",
+	type: "D",
+	id: 53
+}, {
+	content: "在陌生人面前，会表现得很冷漠、高傲。",
+	type: "D",
+	id: 54
+}, {
+	content: "情绪不易外露。",
+	type: "A",
+	id: 55
+}, {
+	content: "常常不知自己下一刻想要什么。",
+	type: "D",
+	id: 56
+}, {
+	content: "常常对自己要求很高。",
+	type: "A",
+	id: 57
+}, {
+	content: "很丰富的情感世界。",
+	type: "D",
+	id: 58
+}, {
+	content: "做事有效率。",
+	type: "C",
+	id: 59
+}, {
+	content: "为人诚实。",
+	type: "A",
+	id: 60
+}, {
+	content: "有很强的创造天分和想象力。",
+	type: "D",
+	id: 61
+}, {
+	content: "不喜欢成为人们注意的中心。",
+	type: "I",
+	id: 62
+}, {
+	content: "喜欢每件事都井然有序。",
+	type: "D",
+	id: 63
+}, {
+	content: "常会回想起童年时代的幸福时光。",
+	type: "G",
+	id: 64
+}, {
+	content: "十分认同自己的所做所为。",
+	type: "C",
+	id: 65
+}, {
+	content: "如果周遭的人行为太过分时，会让她难堪。",
+	type: "H",
+	id: 66
+}, {
+	content: "喜欢不断追求成就。",
+	type: "C",
+	id: 67
+}, {
+	content: "是一位忠实的朋友和伙伴。",
+	type: "F",
+	id: 68
+}, {
+	content: "对别人的感觉很敏感。",
+	type: "B",
+	id: 69
+}, {
+	content: "希望自己比别人更有成就。",
+	type: "C",
+	id: 70
+}, {
+	content: "很容易知道别人的感受和需要。",
+	type: "B",
+	id: 71
+}, {
+	content: "喜欢跟人比较。",
+	type: "C",
+	id: 72
+}, {
+	content: "如果事情没有按照我所认为的正确方式去做，将无法接受。",
+	type: "A",
+	id: 73
+}, {
+	content: "常常感情深藏。",
+	type: "C",
+	id: 74
+}, {
+	content: "倾向于保护自在自己的权威和权力下的人。",
+	type: "H",
+	id: 75
+}, {
+	content: "喜欢体验高高在上的感觉。",
+	type: "C",
+	id: 76
+}, {
+	content: "不善于专心致力于某一件事。",
+	type: "G",
+	id: 77
+}, {
+	content: "一个热心肠的好人。",
+	type: "B",
+	id: 78
+}, {
+	content: "遇到不公正之事会感到害羞和不安。",
+	type: "A",
+	id: 79
+}, {
+	content: "待人热情而有耐性。",
+	type: "B",
+	id: 80
+}, {
+	content: "在人群中，时常感到害羞和不安。",
+	type: "E",
+	id: 81
+}, {
+	content: "讨厌拖泥带水。",
+	type: "H",
+	id: 82
+}, {
+	content: "帮助别人达到快乐和成功是重要的成就。",
+	type: "B",
+	id: 83
+}, {
+	content: "别人拒绝帮助，便会有挫折感。",
+	type: "B",
+	id: 84
+}, {
+	content: "时常过于严厉。",
+	type: "A",
+	id: 85
+}, {
+	content: "喜欢在一旁观察事情的进展。",
+	type: "E",
+	id: 86
+}, {
+	content: "总是以对或错、好或坏为标准看待事物。",
+	type: "A",
+	id: 87
+}, {
+	content: "常担心被剥夺自由，因此不喜欢承诺。",
+	type: "G",
+	id: 88
+}, {
+	content: "很容易认同别人，对一切都不挑剔。",
+	type: "I",
+	id: 89
+}, {
+	content: "办事井井有条，但效率不高",
+	type: "A",
+	id: 90
+}];
+/* 描述 */
+var describe = [{
+	describe: "完美型\t质检、监督",
+	type: "A",
+	id: 1
+}, {
+	describe: "助人型\t服务、志愿",
+	type: "B",
+	id: 2
+}, {
+	describe: "成就型\t销售、演艺",
+	type: "C",
+	id: 3
+}, {
+	describe: "感觉型\t艺术、创意",
+	type: "D",
+	id: 4
+}, {
+	describe: "思想型\t研发、学者",
+	type: "E",
+	id: 5
+}, {
+	describe: "忠诚型\t执行、团队",
+	type: "F",
+	id: 6
+}, {
+	describe: "活跃型\t策划、公关",
+	type: "G",
+	id: 7
+}, {
+	describe: "领袖型\t管理、创业",
+	type: "H",
+	id: 8
+}, {
+	describe: "和平型\t教育、协调",
+	type: "I",
+	id: 9
+}];
